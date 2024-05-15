@@ -1,0 +1,21 @@
+<!-- In shortener/templates/shortener/analytics.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Analytics</title>
+</head>
+<body>
+    <h1>URL Analytics</h1>
+    <p>Original URL: {{ url_instance.original_url }}</p>
+    <p>Short URL: {{ url_instance.short_url }}</p>
+    <h2>Accesses:</h2>
+    <ul>
+        {% for access in accesses %}
+            <li>{{ access.accessed_at }}</li>
+        {% empty %}
+            <li>No accesses recorded yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
