@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>URL Shortener</h1>
-    <form method="post">
+    <form id="shortform" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         {% if form.errors %}
@@ -17,7 +17,42 @@
                 {% endfor %}
             </ul>
         {% endif %}
+        <div id="errorMessage" class="error"></div>
         <button type="submit">Shorten</button>
     </form>
+<script>
+    document.getElementById('shortform').addEventListener('submit',function (event){
+        // menghandle submit form
+        event.preventDefault();
+
+        //membersihkan pesan error sebelumnya
+        const errorMessageDiv = document.getElementById('errorMessage');
+        errorMessageDiv.innerHTML = '';
+
+        //mengambil nilainya
+        const originalUrl = document.querySelector('input[name="original_url"]').value;
+        const shortUrl = document.querySelector('input[name="short_url"]').value;
+
+        //validasi dasar
+        if (!originalUrl){
+            errorMessageDiv.innerHTML = 'Original URL is Required.';
+            return;
+        }
+
+        const forbiddenWords = ['admin', 'root', 'support', 'help', 'login', 'register'];
+        if (shortUrl && forbiddenWords.some(word => shortUrl.toLowerCase().includes(word))) {
+            errorMessageDiv.innerHTML = 'The Short URL contain forbidden words or is reserved.';
+            return;
+        }
+
+        if (shortUrl && !/^[a-zA-Z0-9]+$/.test(shortUrl)){
+            errorMessageDiv.innerHTML = 'Custome URL can only contain Alfabetic and Numeric character.';
+            return;
+        }
+
+        //bila validasi sudah oke, submit form
+        this.submit();
+    });
+</script>
 </body>
 </html>
