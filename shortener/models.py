@@ -1,9 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
+from datetime import datetime
 from django.utils.crypto import get_random_string
 
 class ShortenedURL(models.Model):
     original_url = models.URLField()
     short_url = models.CharField(max_length=10, unique=True, blank=True, null=True)
+    created_at = models.DateTimeField(default=datetime.now)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shortened_urls')
 
     def save(self, *args, **kwargs):
         if not self.short_url:

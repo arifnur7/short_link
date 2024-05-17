@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Short Links</title>
+</head>
+<body>
+    <h1>My Short Links</h1>
+    <ul>
+        {% for link in user_links %}
+            <li>
+                <a href="{{ link.original_url }}">{{ link.short_url }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
