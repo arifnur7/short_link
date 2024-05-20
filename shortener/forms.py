@@ -1,8 +1,27 @@
 from django import forms
 from .models import ShortenedURL
 import logging
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
 
 logger = logging.getLogger(__name__)
+
+class RegisterUserForm(UserCreationForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
+    first_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
+    last_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'username', 'password1','password2')
+
+    def  __init__(self, *args, **kwargs):
+        super(RegisterUserForm, self).__init__(*args, **kwargs)
+
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['password1'].widget.attrs['class'] = 'form-control'
+        self.fields['password2'].widget.attrs['class'] = 'form-control'
 
 class URLForm(forms.ModelForm):
     class Meta:
@@ -13,7 +32,7 @@ class URLForm(forms.ModelForm):
                                         {'placeholder':'Optional : Costum Short URL'})
         }
 
-    forbidden_words = {'admin', 'root', 'support', 'help', 'login', 'register',}
+    forbidden_words = {'admin', 'root', 'support', 'help', 'login', 'register', 'logout', 'delete'}
 
     def clean_short_url(self):
         short_url = self.cleaned_data.get('short_url')

@@ -6,6 +6,7 @@ import logging
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
+from .forms import RegisterUserForm
 
 # Define the logger
 # logger = logging.getLogger(__name__)
@@ -55,7 +56,7 @@ def register(request):
     print("register view called")
     # return HttpResponse("Test")
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterUserForm(request.POST)
         if form.is_valid():
             print("Form is Valid")
             user = form.save()
@@ -65,7 +66,7 @@ def register(request):
             print("Form is invalid")
             print(form.errors)
     else:
-        form = UserCreationForm()
+        form = RegisterUserForm()
     return render(request,'register.html', {'form':form})
 
 @login_required
