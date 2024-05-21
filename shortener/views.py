@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterUserForm
+from django.utils import timezone
 
 # Define the logger
 # logger = logging.getLogger(__name__)
@@ -23,6 +24,7 @@ def index(request):
             if not url_instance.short_url:
                 url_instance.short_url = url_instance.generate_unique_short_url()
             url_instance.user = request.user # tambahan user login
+            url_instance.set_expiration_date() # tambahan untuk expired short link
             url_instance.save()
             return HttpResponse(f'Short URL is: {request.build_absolute_uri(url_instance.short_url)}')
     else:
@@ -32,6 +34,10 @@ def index(request):
 def redirect_url(request, short_url):
     try:
         url_instance = get_object_or_404(ShortenedURL, short_url=short_url)
+        #menambahkan expired time short link
+        if url_instance.expiration_date and timezone.now() > url_instance.expiration_date:
+            url_instance.delete() # menghapus link expired untuk digunakan kembali
+            return HttpResponse("This short link has expired.", status =410)
         # track url access
         URLAccess.objects.create(shortened_url=url_instance)
         return redirect(url_instance.original_url)
@@ -72,5 +78,9 @@ def register(request):
 @login_required
 def user_links(request):
     user_links = ShortenedURL.objects.filter(user=request.user)
-    return render(request, 'shortener/user_links.html', {'user_links': user_links})
+    return render(request, 'user_links.html', {'user_links': user_links})
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
 

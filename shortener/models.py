@@ -1,13 +1,46 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime
+from datetime import timedelta
+from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils.crypto import get_random_string
 
+
+@receiver(post_save, sender = User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender = User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ACCOUNT_TYPE_CHOICES = [
+        ('free', 'Free'),
+        ('premium', 'Premium'),
+    ]
+    account_type = models.CharField(max_length=10, choices=ACCOUNT_TYPE_CHOICES)
+
 class ShortenedURL(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     original_url = models.URLField()
-    short_url = models.CharField(max_length=10, unique=True, blank=True, null=True)
-    created_at = models.DateTimeField(default=datetime.now)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shortened_urls')
+    short_url = models.CharField(max_length=20, unique=True, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField(null=True, blank=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shortened_urls')
+
+    def set_expiration_date(self):
+        if self.user:
+            if self.user.profile.account_type == 'premium':
+                self.expiration_date = timezone.now() + timedelta(365)
+            elif self.user.profile.account_type == 'free':
+                self.expiration_date = timezone.now() + timedelta(90)
+        else:
+            self.expiration_date = timezone.now() + timedelta(30)
+        self.save()
 
     def save(self, *args, **kwargs):
         if not self.short_url:
