@@ -2,10 +2,23 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import timedelta
 from django.utils import timezone
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+import string
+import random
 from django.utils.crypto import get_random_string
 
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ACCOUNT_TYPE_CHOICES = [
+        ('free', 'Free'),
+        ('premium', 'Premium'),
+    ]
+    account_type = models.CharField(max_length=10, choices=ACCOUNT_TYPE_CHOICES, default='free')
+
+    def __str__(self):
+        return self.user.username
 
 @receiver(post_save, sender = User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -16,35 +29,35 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    ACCOUNT_TYPE_CHOICES = [
-        ('free', 'Free'),
-        ('premium', 'Premium'),
-    ]
-    account_type = models.CharField(max_length=10, choices=ACCOUNT_TYPE_CHOICES)
-
 class ShortenedURL(models.Model):
+    STATUS_CHOICES = [
+        ('active', 'Active'),
+        ('expired', 'Expired'),
+    ]
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     original_url = models.URLField()
     short_url = models.CharField(max_length=20, unique=True, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='active')
+    last_updated = models.DateTimeField(auto_now=True)
     # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shortened_urls')
 
     def set_expiration_date(self):
         if self.user:
             if self.user.profile.account_type == 'premium':
-                self.expiration_date = timezone.now() + timedelta(365)
+                self.expires_at = timezone.now() + timedelta(365)
             elif self.user.profile.account_type == 'free':
-                self.expiration_date = timezone.now() + timedelta(90)
+                self.expires_at = timezone.now() + timedelta(90)
         else:
-            self.expiration_date = timezone.now() + timedelta(30)
+            self.expires_at = timezone.now() + timedelta(30)
         self.save()
 
     def save(self, *args, **kwargs):
         if not self.short_url:
             self.short_url = self.generate_unique_short_url()
+        if not self.expires_at:
+            self.set_expiration_date()
         super().save(*args, **kwargs)
 
     def generate_unique_short_url(self):

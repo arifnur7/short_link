@@ -84,3 +84,12 @@ def user_links(request):
 def profile(request):
     return render(request, 'profile.html')
 
+@login_required
+def reactivation(request, short_url):
+    url_instance = get_object_or_404(ShortenedURL, short_url=short_url, user=request.user)
+    if request.method == 'POST':
+        url_instance.set_expiration_date()
+        url_instance.status = 'active'
+        url_instance.save()
+        return redirect('user_links')
+    return render(request, 'reactivation.html', {'url_instance': url_instance})

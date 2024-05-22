@@ -9,6 +9,14 @@
         {% for link in user_links %}
             <li>
                 <a href="{{ link.original_url }}">{{ link.short_url }}</a>
+                Status: {{ link.status }} -
+                Expires at: {{ link.expires_at }}
+                {% if link.status == 'expired' %}
+                    <form action="{% url 'reactivation' link.short_url %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Reactivate</button>
+                    </form>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
