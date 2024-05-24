@@ -8,6 +8,10 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterUserForm
 from django.utils import timezone
+import qrcode
+from io import BytesIO
+import base64
+
 
 # Define the logger
 # logger = logging.getLogger(__name__)
@@ -26,10 +30,52 @@ def index(request):
             url_instance.user = request.user # tambahan user login
             url_instance.set_expiration_date() # tambahan untuk expired short link
             url_instance.save()
-            return HttpResponse(f'Short URL is: {request.build_absolute_uri(url_instance.short_url)}')
+            # qr_code = url_instance.generate_qr_code()
+            qr_code_img = url_instance.generate_qr_code() # tambahan untuk menampilkan QR Code
+            qr_code_base64 = base64.b64encode(qr_code_img.read()).decode('utf-8')
+            return render(request,'index.html',{'form':form, 'url_instance':url_instance, 'qr_code':qr_code_base64})
+            # return HttpResponse(f'Short URL is: {request.build_absolute_uri(url_instance.short_url)}')
     else:
         form = URLForm()
     return render(request, 'index.html', {'form': form})
+
+# function membuat QR CODE
+def qr_code(request, short_url):
+    url_instance = get_object_or_404(ShortenedURL, short_url=short_url)
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(request.build_absolute_uri(f'/{short_url}'))
+    qr.make(fit=True)
+
+    img=qr.make_image(fill='black', back_color='white')
+    buffer = BytesIO()
+    img.save(buffer, format='PNG')
+    buffer.seek(0)
+    return HttpResponse(buffer,content_type="image/png")
+
+# function untuk mendownload QR CODE
+def download_qr_code(request, short_url):
+    url_instance = get_object_or_404(ShortenedURL, short_url=short_url)
+    qr= qrcode.QRCode(
+        version=1,
+        error_correction = qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(request.build_absolute_uri(f'/{short_url}'))
+    qr.make(fit=True)
+
+    img = qr.make_image(fill='black', back_color='white')
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+    buffer.seek(0)
+    response = HttpResponse(buffer, content_type="image/png")
+    response['Content-Disposition'] = f'attachment; filename="{short_url}.png"'
+    return response
 
 def redirect_url(request, short_url):
     try:
@@ -78,7 +124,14 @@ def register(request):
 @login_required
 def user_links(request):
     user_links = ShortenedURL.objects.filter(user=request.user)
-    return render(request, 'user_links.html', {'user_links': user_links})
+    print(user_links)
+    qr_codes = {
+        link.short_url: base64.b64encode(link.generate_qr_code().read()).decode('utf-8') for link in user_links}
+    print(qr_codes)
+    print(qr_codes.keys())
+    print(qr_codes['aurora2'])
+    return render(request, 'user_links.html', {'user_links': user_links, 'qr_codes':qr_codes})
+
 
 @login_required
 def profile(request):

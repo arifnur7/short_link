@@ -4,6 +4,9 @@ from datetime import timedelta
 from django.utils import timezone
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+import qrcode
+from io import BytesIO
+from django.core.files import File
 import string
 import random
 from django.utils.crypto import get_random_string
@@ -66,7 +69,21 @@ class ShortenedURL(models.Model):
             short_url = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
             if not ShortenedURL.objects.filter(short_url=short_url).exists:
                 return short_url
+    def generate_qr_code(self):
+        qr= qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4,
+        )
+        qr.add_data(f'http://127.0.0.1:8000/{self.short_url}')
+        qr.make(fit=True)
 
+        img = qr.make_image(fill='black', back_color='white')
+        buffer = BytesIO()
+        img.save(buffer, format="PNG")
+        buffer.seek(0)
+        return buffer
 
     def __str__(self):
         return f"{self.original_url} -> {self.short_url}"

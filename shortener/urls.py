@@ -13,6 +13,8 @@ urlpatterns = [
     path('accounts/profile/', views.profile, name='profile'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('my-links/', views.user_links, name='user_links'),
+    path('qr/<str:short_url>/', views.qr_code, name='qr_code'),
+    path('download-qr/<str:short_url>/', views.download_qr_code, name='download_qr_code'),
     path('reactivation/<str:short_url>/', views.reactivation, name='reactivation'),
     path('<str:short_url>/', views.redirect_url, name='redirect_url'),
     path('favicon.ico/', RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)),

@@ -8,9 +8,17 @@
     <ul>
         {% for link in user_links %}
             <li>
-                <a href="{{ link.original_url }}">{{ link.short_url }}</a>
-                Status: {{ link.status }} -
-                Expires at: {{ link.expires_at }}
+                <p>Original URL: {{ link.original_url }} </p>
+                <p>Short URL: <a href="{{ link.short_url }}">{{ link.short_url }}</a></p>
+<!--                <a href="{{ link.original_url }}">{{ link.short_url }}</a>-->
+                <p>Status: {{ link.status }} - Expires at: {{ link.expires_at }}</p>
+                <p>QR Code: </p>
+
+                    <img src="data:image/png;base64,{{ qr_codes['aurora2'] }}" alt="QR Code">
+<!--                    <a href="{% url 'qr_code' link.short_url %}" target="_blank">View QR CODE</a> |-->
+
+
+                    <a href="{% url 'download_qr_code' link.short_url %}">Download QR Code</a>
                 {% if link.status == 'expired' %}
                     <form action="{% url 'reactivation' link.short_url %}" method="post" style="display:inline;">
                     {% csrf_token %}

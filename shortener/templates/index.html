@@ -23,6 +23,15 @@
         <div id="errorMessage" class="error"></div>
         <button type="submit">Shorten</button>
     </form>
+    <div>
+        {% if url_instance %}
+            <h2>Short URL</h2>
+            <p>Original URL: {{ url_instance.original_url }}</p>
+            <p>Short URL: <a href="{{ url_instance.short_url }}">{{ url_instance.short_url }}</a></p>
+            <p>QR Code:</p>
+            <img src="data:image/png;base64,{{ qr_code|safe }}">
+        {% endif %}
+    </div>
 <script>
     document.getElementById('shortform').addEventListener('submit',function (event){
         // menghandle submit form
