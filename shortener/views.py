@@ -14,7 +14,7 @@ import base64
 
 
 # Define the logger
-# logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 def testbug(request):
     return render(request,'testbug.html')
@@ -90,13 +90,17 @@ def redirect_url(request, short_url):
     except Exception as e:
         logger.error(f"Error in redirecting short URL {short_url}: {str(e)}")
         return HttpResponse("An error occurred.", status=500)
-
+@login_required()
 def analytics(request, short_url):
     # ambil object url
     # check owner url == user
     # if(request.user.id == url.owner)
     try:
         url_instance = get_object_or_404(ShortenedURL, short_url=short_url)
+        # cek apakah login user adalah pemilik link
+        if not (request.user.is_superuser or url_instance.user == request.user):
+            return HttpResponseForbidden("You do not have permission to view this analytics page.")
+
         accesses = URLAccess.objects.filter(shortened_url=url_instance)
         return render(request, 'analytics.html', {'url_instance': url_instance, 'accesses': accesses})
     except Exception as e:

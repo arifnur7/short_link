@@ -6,6 +6,7 @@
 <body>
     <h1>My Short Links</h1>
     <ul>
+        {% load custom_filters %}
         {% for link in user_links %}
             <li>
                 <p>Original URL: {{ link.original_url }} </p>
@@ -14,7 +15,7 @@
                 <p>Status: {{ link.status }} - Expires at: {{ link.expires_at }}</p>
                 <p>QR Code: </p>
 
-                    <img src="data:image/png;base64,{{ qr_codes['aurora2'] }}" alt="QR Code">
+                    <img src="data:image/png;base64,{{ qr_codes|get_item:link.short_url }}" alt="QR Code">
 <!--                    <a href="{% url 'qr_code' link.short_url %}" target="_blank">View QR CODE</a> |-->
 
 
@@ -25,6 +26,7 @@
                     <button type="submit">Reactivate</button>
                     </form>
                 {% endif %}
+                <a href="{% url 'analytics' link.short_url %}">View Analytics</a>
             </li>
         {% endfor %}
     </ul>
