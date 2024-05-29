@@ -133,7 +133,6 @@ def user_links(request):
         link.short_url: base64.b64encode(link.generate_qr_code().read()).decode('utf-8') for link in user_links}
     print(qr_codes)
     print(qr_codes.keys())
-    print(qr_codes['aurora2'])
     return render(request, 'user_links.html', {'user_links': user_links, 'qr_codes':qr_codes})
 
 

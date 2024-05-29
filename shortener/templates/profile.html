@@ -1,11 +1,8 @@
-<!-- templates/profile.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Profile</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
     <h1>Welcome, {{ user.username }}</h1>
     <p>This is your profile page.</p>
 </body>
 </html>
+{% endblock %}

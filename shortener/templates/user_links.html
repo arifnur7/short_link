@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Short Links</title>
-</head>
-<body>
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content %}
     <h1>My Short Links</h1>
     <ul>
         {% load custom_filters %}
@@ -30,5 +28,5 @@
             </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+
+{% endblock %}

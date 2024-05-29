@@ -1,0 +1,25 @@
+body {
+    background: linear-gradient(to-right,rgba(255,0,0,0.5),rgba(0,0,255,0.5));
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+.content{
+    text-align: center;
+    z-index: 1; /* Ensures the content appears above the background image */
+}
+
+.anime-character {
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+    width: 300px; /* ukuran lebar anime */
+    height: auto;
+    opacity: 0.8; /* mengatur transparan anime */
+    z-index: 0; /* memastikan image anime ada dipaling belakang */
+}
