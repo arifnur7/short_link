@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
+{% load static %}
 {% block content %}
 <!-- isi utama dari halaman ini-->
 
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center m-5 p-5">
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
@@ -27,7 +27,7 @@
                     {% endif %}
                 </div>
                 <div id="errorMessage" class="error"></div>
-                <button type="submit">Shorten</button>
+                <button class="btn btn-outline-primary" type="submit">Shorten</button>
             </form>
             {% if url_instance %}
             <div class="alert alert-success mt-3">
@@ -42,7 +42,7 @@
         </div>
     </div>
     </div>
-
+    <img src="{% static 'images/pngwing.com.png' %}" alt="anime" class="anime-character">
 
 <script>
     document.getElementById('shortform').addEventListener('submit',function (event){

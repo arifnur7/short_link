@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container shadow p-4 mb-5 bg-body rounded">
     <h1>Login</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
-</body>
-</html>
+    <p class="mt-3">
+        <a href="{% url 'password_reset' %}">Forgot Password?</a>
+    </p>
+</div>
+{% endblock %}

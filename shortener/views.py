@@ -4,8 +4,11 @@ from .models import ShortenedURL, URLAccess
 from .forms import URLForm
 import logging
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout, login as auth_login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from .forms import RegisterUserForm
 from django.utils import timezone
 import qrcode
@@ -19,7 +22,6 @@ logger = logging.getLogger(__name__)
 def testbug(request):
     return render(request,'testbug.html')
 
-@login_required
 def index(request):
     if request.method == 'POST':
         form = URLForm(request.POST)
@@ -138,7 +140,15 @@ def user_links(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user) # penting untuk membuat user tetap login saat berganti pass
+            return redirect('profile')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'profile.html', {'user': request.user, 'password_change_form': form})
 
 @login_required
 def reactivation(request, short_url):
@@ -149,3 +159,8 @@ def reactivation(request, short_url):
         url_instance.save()
         return redirect('user_links')
     return render(request, 'reactivation.html', {'url_instance': url_instance})
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'logout.html')

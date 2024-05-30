@@ -1,8 +1,31 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{{% load static %}
 {% block content %}
+<div class="contrainer ms-5 ps-5 col-7 leftlable">
+    <img src="{% static 'images/anyabengong.png' %}" alt="anime" class="anime-profil">
     <h1>Welcome, {{ user.username }}</h1>
     <p>This is your profile page.</p>
-</body>
-</html>
+    <div class="mb-3">
+        <label for="first_name" class="form-label">First Name:</label>
+        <input type="text" class="form-control" id="first_name" value="{{ user.first_name }}" readonly>
+    </div>
+    <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name:</label>
+            <input type="text" class="form-control" id="last_name" value="{{ user.last_name }}" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" value="{{ user.email }}" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" class="form-control" id="username" value="{{ user.username }}" readonly></div>
+        <h3 class="mt-5">Change Password</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ password_change_form.as_p }}
+            <button type="submit" class="btn btn-primary">Change Password</button>
+        </form>
+</div>
 {% endblock %}

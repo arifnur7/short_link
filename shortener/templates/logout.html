@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <div>
+        <img src="{% static 'images/anyasembunyi.png' %}" alt="Goodbye Anime Icon" class="animelogout">
+        <div class="goodbye-message">Goodbye! We hope to see you again soon.</div>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    </div>
+{% endblock %}
