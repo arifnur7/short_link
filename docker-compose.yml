@@ -1,0 +1,9 @@
+services:
+  nginx:
+    build:
+      context: ./nginx/
+    ports:
+      - 80:80
+    volumes:
+      ./shortener/templates/:/usr/share/nginx/html
+      ./nginx/conf.d:/etc/nginx/conf.d/
