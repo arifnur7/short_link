@@ -1,9 +1,30 @@
 services:
-  nginx:
+  web:
     build:
-      context: ./nginx/
-    ports:
-      - 80:80
+      context: ./django
     volumes:
-      ./shortener/templates/:/usr/share/nginx/html
-      ./nginx/conf.d:/etc/nginx/conf.d/
+      - ./django:/app/django
+    command: gunicorn main.wsgi:application --bind 0.0.0.0:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: shortlink_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:

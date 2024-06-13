@@ -1,0 +1,77 @@
+body {
+    background-image: linear-gradient(to right, rgba(140, 255, 255, 0), rgba(0, 255, 255, 1));
+    min-height: 100vh;
+    margin: 0;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+.leftlable{
+    justify-content: center;
+    text-align: left;
+}
+
+.navcolor{
+    background-image: linear-gradient(to right, rgba(245, 39, 236, 0), rgba(0, 74, 255, 0.98));;
+}
+
+.fontnavbar{
+    color:white;
+}
+
+.lobster-two-bold {
+  font-family: "Lobster Two", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.8em;
+  text-shadow: 5px 5px white;
+}
+
+.content{
+    text-align: center;
+    z-index: 1; /* Ensures the content appears above the background image */
+}
+
+.anime-character {
+    position: absolute;
+    right: 10%;
+    bottom: 25%;
+    width: 300px; /* ukuran lebar anime */
+    height: auto;
+    opacity: 1; /* mengatur transparan anime */
+    z-index: 0; /* memastikan image anime ada dipaling belakang */
+}
+
+.anime-profil {
+    position: fixed;
+    right: 10%;
+    bottom: 40%;
+    width: 350px; /* ukuran lebar anime */
+    height: auto;
+    opacity: 1; /* mengatur transparan anime */
+    z-index: 0; /* memastikan image anime ada dipaling belakang */
+}
+
+.animelogout{
+    position: absolute;
+    right: 40%;
+    bottom: 25%;
+    width: 300px; /* ukuran lebar anime */
+    height: auto;
+    opacity: 1; /* mengatur transparan anime */
+    z-index: 0; /* memastikan image anime ada dipaling belakang */
+}
+
+.goodbye-message {
+    margin-top: 10%;
+    font-size: 4em;
+    color: rgba(255, 207, 0, 1);
+    text-shadow: 5px 5px white;
+}
+
+.register{
+    text-align: left;
+}
