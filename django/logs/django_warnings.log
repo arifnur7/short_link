@@ -5269,3 +5269,123 @@ LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
                                                              ^
 
 ERROR 2024-06-13 10:27:09,085 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:17:04,057 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:17:04,062 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:17:11,779 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:17:11,782 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:17:19,371 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:17:19,372 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:19:58,618 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:19:58,621 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:19:59,321 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:19:59,322 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:21:09,269 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:21:09,270 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:21:10,089 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:21:10,090 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:21:10,619 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:21:10,620 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:21:11,139 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:21:11,141 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:21:11,523 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:21:11,524 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:21:11,876 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:21:11,878 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:23:23,123 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:23:23,137 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:24:35,132 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:24:35,135 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:24:36,015 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:24:36,016 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:24:36,819 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:24:36,820 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:26:17,254 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:26:17,256 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:28:14,599 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:28:14,600 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:28:26,581 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:28:26,583 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:28:27,301 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:28:27,303 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:54:33,267 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:54:33,269 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:55:07,614 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:55:07,617 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:55:17,413 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:55:17,414 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:55:22,398 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:55:22,403 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-14 08:56:44,439 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-14 08:56:44,442 log Internal Server Error: /favicon.ico/
