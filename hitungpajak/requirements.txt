@@ -1,0 +1,5 @@
+asgiref==3.8.1
+currencies==2020.12.12
+Django==5.0.4
+sqlparse==0.5.0
+gunicorn==22.0.0

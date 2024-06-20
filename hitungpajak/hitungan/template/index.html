@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+ <div class="container bg-secondary bg-gradient">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="col-8 text-center">
+            <h1 class="text-warning outfit-bold"> Kalkulator Penghitung Pajak Bea Masuk
+                Produk/Barang dari Online Shop </h1>
+        </div>
+
+        <div class="d-flex flex-column vertical-box align-items-center">
+            <form id="form" class="col-6" method="POST" data-post-url="{% url 'index' %}">
+                <h3 class="comfortaa-bold text-warning m-2">Formulir Kalkulasi</h3>
+<!--                <div class="form-group" class="border border-2 border-danger field-form">-->
+                            {% csrf_token %}
+                            <div class="form-group m-2">
+                                {{ form.nama_barang.label_tag }}
+                                {{ form.nama_barang }}
+                            </div>
+                            <div class="form-group m-2">
+                                {{ form.jb.label_tag }}
+                                {{ form.jb }}
+                            </div>
+                            <div class="form-group m-2">
+                                {{ form.harga_barang.label_tag }}
+                                {{ form.harga_barang }}
+                            </div>
+                            <div class="form-group m-2">
+                                {{ form.nilai_asuransi.label_tag }}
+                                {{ form.nilai_asuransi }}
+                            </div>
+                            <div class="form-group m-2">
+                                {{ form.biaya_kirim.label_tag }}
+                                {{ form.biaya_kirim }}
+                            </div>
+
+                                <button type="submit" id="btn" class="btn btn-primary m-2">Hitung</button>
+<!--                </div>-->
+            </form>
+        </div>
+
+
+
+<!--        punya nya result-->
+         <div id = 'result' class="md-2 margin-result comfortaa-bold text-warning col-8">
+
+         </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="{% static 'main.js' %}"></script>
+
+{% endblock content %}
+
+

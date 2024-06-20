@@ -9,6 +9,14 @@ services:
     depends_on:
       - db
 
+  web2:
+    build:
+      context: ./hitungpajak
+    volumes:
+      - ./hitungpajak:/app/hitungpajak
+      - ./hitungpajak/staticfiles:/app/static
+    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
+
   db:
     image: postgres:16-alpine
     volumes:
@@ -25,8 +33,10 @@ services:
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./django/staticfiles:/app/static
+      - ./hitungpajak/staticfiles:/app/static
     depends_on:
       - web
+      - web2
   dns:
     build:
       context: ./dns/
@@ -38,5 +48,6 @@ services:
       - ./dns/named.conf:/etc/bind/named.conf
       - ./dns/zone/:/etc/bind/zone/
     command: named -c /etc/bind/named.conf -g -u named
+
 volumes:
   postgres_data:
