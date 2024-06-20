@@ -196,6 +196,15 @@ LOGGING = {
 if not os.path.exists(os.path.join(BASE_DIR, 'logs')):
     os.makedirs(os.path.join(BASE_DIR, 'logs'))
 
+#allowed host untuk ns.main.com 127.0.0.1 untuk local server
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'ns.main.com',
+    'main.com',
+    '*.main.com'
+]
+
 
 # untuk feature forgot password
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

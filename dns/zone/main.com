@@ -1,9 +1,10 @@
-$ttl 86400
-@      IN      SOA  ns.main.com. hostmaster.main.com.(
-                    202 ; Serial
-                    600 ; Refresh
-                    3600 ; Retry
-                    12378237) ; Expire
-
-@      IN      NS  ns.name.com.
-ns     IN      A   127.0.0.1
+$TTL    604800
+@       IN      SOA     ns.main.com. hostmaster.main.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      ns.main.com.
+ns      IN      A       127.0.0.1
