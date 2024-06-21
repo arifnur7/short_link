@@ -33,7 +33,7 @@ services:
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./django/staticfiles:/app/static
-      - ./hitungpajak/staticfiles:/app/static
+      - ./hitungpajak/staticfiles:/app/static2
     depends_on:
       - web
       - web2
