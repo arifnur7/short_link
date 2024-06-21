@@ -8,3 +8,4 @@ $TTL    604800
 ;
 @       IN      NS      ns.main.com.
 ns      IN      A       127.0.0.1
+@       IN      A       127.0.0.1
