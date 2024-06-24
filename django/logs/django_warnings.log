@@ -5449,3 +5449,63 @@ Traceback (most recent call last):
     raise DisallowedHost(msg)
 django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'web:8000'. You may need to add 'web' to ALLOWED_HOSTS.
 WARNING 2024-06-20 09:03:38,542 log Bad Request: /
+ERROR 2024-06-24 06:17:37,001 views Error in redirecting short URL apple-touch-icon-precomposed.png: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,002 log Internal Server Error: /apple-touch-icon-precomposed.png/
+ERROR 2024-06-24 06:17:37,067 views Error in redirecting short URL apple-touch-icon.png: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,070 log Internal Server Error: /apple-touch-icon.png/
+ERROR 2024-06-24 06:17:37,125 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,126 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-24 06:17:37,156 views Error in redirecting short URL apple-touch-icon-precomposed.png: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,157 log Internal Server Error: /apple-touch-icon-precomposed.png/
+ERROR 2024-06-24 06:17:37,184 views Error in redirecting short URL apple-touch-icon.png: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,185 log Internal Server Error: /apple-touch-icon.png/
+ERROR 2024-06-24 06:17:37,204 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,205 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-24 06:17:37,244 views Error in redirecting short URL apple-touch-icon-precomposed.png: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,246 log Internal Server Error: /apple-touch-icon-precomposed.png/
+ERROR 2024-06-24 06:17:37,265 views Error in redirecting short URL apple-touch-icon.png: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,266 log Internal Server Error: /apple-touch-icon.png/
+ERROR 2024-06-24 06:17:37,287 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,289 log Internal Server Error: /favicon.ico/
+ERROR 2024-06-24 06:17:37,309 views Error in redirecting short URL apple-touch-icon-precomposed.png: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,310 log Internal Server Error: /apple-touch-icon-precomposed.png/
+ERROR 2024-06-24 06:17:37,328 views Error in redirecting short URL apple-touch-icon.png: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,329 log Internal Server Error: /apple-touch-icon.png/
+ERROR 2024-06-24 06:17:37,346 views Error in redirecting short URL favicon.ico: relation "shortener_shortenedurl" does not exist
+LINE 1: ...us", "shortener_shortenedurl"."last_updated" FROM "shortener...
+                                                             ^
+
+ERROR 2024-06-24 06:17:37,347 log Internal Server Error: /favicon.ico/
