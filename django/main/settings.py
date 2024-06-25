@@ -22,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-de=*%2du9!6+=ig+u!e*3jky%=ai(e6_m*k#$1p6s-z_36dll7"
+SECRET_KEY = os.environ.get("SECRET_KEY_BSL")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = int(os.environ.get("DEBUG_BSL", default=0))
+#allowed host untuk ns.main.com 127.0.0.1 untuk local server
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS_BSL").split(" ")
 
 
 # Application definition
@@ -197,13 +197,13 @@ if not os.path.exists(os.path.join(BASE_DIR, 'logs')):
     os.makedirs(os.path.join(BASE_DIR, 'logs'))
 
 #allowed host untuk ns.main.com 127.0.0.1 untuk local server
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'ns.main.com',
-    'main.com',
-    '*.main.com'
-]
+# ALLOWED_HOSTS = [
+#     'localhost',
+#     '127.0.0.1',
+#     'ns.main.com',
+#     'main.com',
+#     '*.main.com'
+# ]
 
 
 # untuk feature forgot password

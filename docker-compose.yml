@@ -5,6 +5,8 @@ services:
     volumes:
       - ./django:/app/django
       - ./django/staticfiles:/app/static
+    env_file:
+      - ./.env/dev.env
     command: gunicorn main.wsgi:application --bind 0.0.0.0:8000
     depends_on:
       - db
@@ -15,6 +17,8 @@ services:
     volumes:
       - ./hitungpajak:/app/hitungpajak
       - ./hitungpajak/staticfiles:/app/static
+    env_file:
+      - ./.env/dev.env
     command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
 
   db:

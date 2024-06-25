@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-97bqhx6i50fgi!o8w#avdin68ogfy#gx04^syi9vp!rm&*-3u_"
+SECRET_KEY = os.environ.get("SECRET_KEY_HP")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = int(os.environ.get("DEBUG_HP", default=0))
+#allowed host untuk ns.sec.com 127.0.0.1 untuk local server
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS_HP").split(" ")
 
 
 # Application definition
@@ -130,10 +130,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 #allowed host untuk ns.main.com 127.0.0.1 untuk local server
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'ns.sec.com',
-    'sec.com',
-    '*.sec.com'
-]
+# ALLOWED_HOSTS = [
+#     'localhost',
+#     '127.0.0.1',
+#     'ns.sec.com',
+#     'sec.com',
+#     '*.sec.com'
+# ]
